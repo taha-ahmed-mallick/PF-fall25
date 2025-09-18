@@ -1,0 +1,2 @@
+printf("Negative.\n");
+    
