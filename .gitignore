@@ -1,2 +1,6 @@
 *.exe
 *.bat
+*.pdf
+!/CCP/*.pdf
+/code-in-place/assignments/*/*.c
+!/code-in-place/assignments/*/submission/*.c
