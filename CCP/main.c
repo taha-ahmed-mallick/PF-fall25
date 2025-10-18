@@ -3,7 +3,10 @@
 #include <stdlib.h>
 
 char board[] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
-void printBoard();
+
+void print_board();
+int check_win();
+
 int main()
 {
     SetConsoleOutputCP(CP_UTF8);
@@ -13,7 +16,7 @@ int main()
     {
         system("cls");
         printf("%d", board[0]);
-        printBoard();
+        print_board();
         mark = player == 1 ? 'X' : 'O';
         if (flag)
             printf("Invalid input by Player %d\n\tEnter again.", player);
@@ -24,13 +27,15 @@ int main()
             flag = 1;
             continue;
         }
+        board[box - 1] = mark;
+
         flag = 0;
         player = player == 1 ? 2 : 1;
     }
     return 0;
 }
 
-void printBoard()
+void print_board()
 {
     printf("\t┌────────────────┐\n");
     printf("\t│TIC TAC TOE GAME│\n");
@@ -40,6 +45,12 @@ void printBoard()
     printf("\n\t    %c │ %c │ %c", board[3], board[4], board[5]);
     printf("\n\t   ───┼───┼───");
     printf("\n\t    %c │ %c │ %c\n", board[6], board[7], board[8]);
+}
+
+int check_win() {
+    if (board[0] == board[1] && board[1] == board[2]
+    ||  board[3] == board[4] && board[4] == board[5]
+    ||  board[6] == board[7] && board[7] == board[8]) return 1;
 }
 
 /*
