@@ -53,13 +53,15 @@ void print_board(int status)
     printf("\t┌────────────────┐\n");
     printf("\t│TIC TAC TOE GAME│\n");
     printf("\t└────────────────┘\n");
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++)
+    {
         printf("\n\t    ");
-        for (int j = 0; j < 3; j++) {
-            printf("%c", board[j+i*3]);
-            j!=2?printf(" │ "):0;
+        for (int j = 0; j < 3; j++)
+        {
+            printf("%c", board[j + i * 3]);
+            j != 2 ? printf(" │ ") : 0;
         }
-        i!=2?printf("\n\t   ───┼───┼───"):0;
+        i != 2 ? printf("\n\t   ───┼───┼───") : 0;
     }
     printf("\n");
     /*
