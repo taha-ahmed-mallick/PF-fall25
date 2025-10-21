@@ -29,13 +29,13 @@ int main()
         if (flag)
             printf("Invalid input by Player %d\n\tEnter again.\n", player);
         printf("Player %d [%c], enter position (1-9): ", player, mark);
-        if (scanf("%d", &box) != 1)
+        if (scanf("%d", &box) != 1) // char validation
         {
             while (getchar() != '\n');
             flag = 1;
             continue;
         }
-        if (box < 1 || box > 9 || board[box - 1] != box + '0')
+        if (box < 1 || box > 9 || board[box - 1] != box + '0') // valid bounds + occupied box
         {
             flag = 1;
             continue;
@@ -57,6 +57,7 @@ int main()
             }
         }
         flag = 0;
+        while (getchar() != '\n'); // float validation
         player = player == 1 ? 2 : 1;
     }
     return 0;
