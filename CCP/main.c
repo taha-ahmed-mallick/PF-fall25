@@ -48,13 +48,33 @@ int main()
             if (status == 1)
             {
                 printf("\tPlayer %d Wins!!\n", player);
-                return 0;
             }
             else if (status == -1)
             {
                 printf("\tThis is a draw...\n");
-                return 0;
             }
+            char choice = 'y';
+            do
+            {
+                if (choice != 'y') printf("Enter valid input.\n");
+                printf("\nPlay again? (y/n): ");
+                scanf(" %c", &choice);
+            } while (choice != 'y' && choice != 'Y' && choice != 'n' && choice != 'N');
+
+            if (choice == 'y' || choice == 'Y')
+            {
+                for (int i = 0; i < 9; i++)
+                    board[i] = (char) i+49;
+                for (int i = 0; i < 3; i++)
+                    win_pos[i] = 9;
+
+                player = 1;
+                status = 0;
+                flag = 0;
+                continue;
+            }
+            else
+                return 0;
         }
         flag = 0;
         while (getchar() != '\n'); // float validation
