@@ -3,6 +3,16 @@
 
 char board[] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
 int win_pos[] = {9, 9, 9};
+int win_lines[8][3] = {
+    {0, 1, 2}, // 1st row
+    {3, 4, 5}, // 2nd row
+    {6, 7, 8}, // 3rd row
+    {0, 3, 6}, // 1st col
+    {1, 4, 7}, // 2nd col
+    {2, 5, 8}, // 3rd col
+    {0, 4, 8}, // rht dig
+    {2, 4, 6}  // lft dig
+};
 
 void print_board(int status);
 int check_win();
@@ -92,61 +102,18 @@ void print_board(int status)
 int check_win()
 {
     // Win Check
-    if (board[0] == board[1] && board[1] == board[2]) // 1st row
+    for (int i = 0; i < 8; i++)
     {
-        win_pos[0] = 0;
-        win_pos[1] = 1;
-        win_pos[2] = 2;
-        return 1;
-    }
-    if (board[3] == board[4] && board[4] == board[5]) // 2nd row
-    {
-        win_pos[0] = 3;
-        win_pos[1] = 4;
-        win_pos[2] = 5;
-        return 1;
-    }
-    if (board[6] == board[7] && board[7] == board[8]) // 3rd row
-    {
-        win_pos[0] = 6;
-        win_pos[1] = 7;
-        win_pos[2] = 8;
-        return 1;
-    }
-    if (board[0] == board[3] && board[3] == board[6]) // 1st col
-    {
-        win_pos[0] = 0;
-        win_pos[1] = 3;
-        win_pos[2] = 6;
-        return 1;
-    }
-    if (board[1] == board[4] && board[4] == board[7]) // 2nd col
-    {
-        win_pos[0] = 1;
-        win_pos[1] = 4;
-        win_pos[2] = 7;
-        return 1;
-    }
-    if (board[2] == board[5] && board[5] == board[8]) // 3rd col
-    {
-        win_pos[0] = 2;
-        win_pos[1] = 5;
-        win_pos[2] = 8;
-        return 1;
-    }
-    if (board[0] == board[4] && board[4] == board[8]) // rht dig
-    {
-        win_pos[0] = 0;
-        win_pos[1] = 4;
-        win_pos[2] = 8;
-        return 1;
-    }
-    if (board[2] == board[4] && board[4] == board[6]) // lft dig
-    {
-        win_pos[0] = 2;
-        win_pos[1] = 4;
-        win_pos[2] = 6;
-        return 1;
+        int pos1 = win_lines[i][0];
+        int pos2 = win_lines[i][1];
+        int pos3 = win_lines[i][2];
+        if (board[pos1] == board[pos2] && board[pos2] == board[pos3])
+        {
+            win_pos[0] = pos1;
+            win_pos[1] = pos2;
+            win_pos[2] = pos3;
+            return 1;
+        }
     }
 
     // Draw Check
