@@ -90,9 +90,10 @@ void print_board(int status)
                 SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
             else if (mark == 'O')
                 SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-            for (int k = 0; k < 3; k++)
-                if (win_pos[k] == j + i * 3)
-                    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+            if (status)
+                for (int k = 0; k < 3; k++)
+                    if (win_pos[k] == j + i * 3)
+                        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
             printf("%c", mark);
             SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
             j != 2 ? printf(" │ ") : 0;
