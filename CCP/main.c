@@ -2,7 +2,7 @@
 #include <windows.h>
 
 char board[] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
-int win_pos[3];
+int win_pos[] = {9, 9, 9};
 
 void print_board(int status);
 int check_win();
@@ -17,8 +17,8 @@ int main()
         print_board(status);
         mark = player == 1 ? 'X' : 'O';
         if (flag)
-            printf("Invalid input by Player %d\n\tEnter again.", player);
-        printf("\nPlayer %d [%c], enter position (1-9): ", player, mark);
+            printf("Invalid input by Player %d\n\tEnter again.\n", player);
+        printf("Player %d [%c], enter position (1-9): ", player, mark);
         scanf("%d", &box);
         if (box < 1 || box > 9 || board[box - 1] != box + '0')
         {
@@ -32,12 +32,12 @@ int main()
             print_board(status);
             if (status == 1)
             {
-                printf("Player %d Wins!!", player);
+                printf("\tPlayer %d Wins!!\n", player);
                 return 0;
             }
             else if (status == -1)
             {
-                printf("This is a draw...");
+                printf("\tThis is a draw...\n");
                 return 0;
             }
         }
@@ -50,6 +50,7 @@ int main()
 void print_board(int status)
 {
     system("cls");
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     printf("\t┌────────────────┐\n");
     printf("\t│TIC TAC TOE GAME│\n");
     printf("\t└────────────────┘\n");
@@ -58,12 +59,21 @@ void print_board(int status)
         printf("\n\t    ");
         for (int j = 0; j < 3; j++)
         {
-            printf("%c", board[j + i * 3]);
+            char mark = board[j + i * 3];
+            if (mark == 'X')
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
+            else if (mark == 'O')
+                SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+            for (int k = 0; k < 3; k++)
+                if (win_pos[k] == j + i * 3)
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+            printf("%c", mark);
+            SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
             j != 2 ? printf(" │ ") : 0;
         }
         i != 2 ? printf("\n\t   ───┼───┼───") : 0;
     }
-    printf("\n");
+    printf("\n\n");
     /*
     i j -> n
     0 0 -> 0
@@ -82,16 +92,62 @@ void print_board(int status)
 int check_win()
 {
     // Win Check
-    if (board[0] == board[1] && board[1] == board[2]    // 1st row
-        || board[3] == board[4] && board[4] == board[5] // 2nd row
-        || board[6] == board[7] && board[7] == board[8] // 3rd row
-        || board[0] == board[3] && board[3] == board[6] // 1st col
-        || board[1] == board[4] && board[4] == board[7] // 2nd col
-        || board[2] == board[5] && board[5] == board[8] // 3rd col
-        || board[0] == board[4] && board[4] == board[8] // rht dig
-        || board[2] == board[4] && board[4] == board[6] // lft dig
-    )
+    if (board[0] == board[1] && board[1] == board[2]) // 1st row
+    {
+        win_pos[0] = 0;
+        win_pos[1] = 1;
+        win_pos[2] = 2;
         return 1;
+    }
+    if (board[3] == board[4] && board[4] == board[5]) // 2nd row
+    {
+        win_pos[0] = 3;
+        win_pos[1] = 4;
+        win_pos[2] = 5;
+        return 1;
+    }
+    if (board[6] == board[7] && board[7] == board[8]) // 3rd row
+    {
+        win_pos[0] = 6;
+        win_pos[1] = 7;
+        win_pos[2] = 8;
+        return 1;
+    }
+    if (board[0] == board[3] && board[3] == board[6]) // 1st col
+    {
+        win_pos[0] = 0;
+        win_pos[1] = 3;
+        win_pos[2] = 6;
+        return 1;
+    }
+    if (board[1] == board[4] && board[4] == board[7]) // 2nd col
+    {
+        win_pos[0] = 1;
+        win_pos[1] = 4;
+        win_pos[2] = 7;
+        return 1;
+    }
+    if (board[2] == board[5] && board[5] == board[8]) // 3rd col
+    {
+        win_pos[0] = 2;
+        win_pos[1] = 5;
+        win_pos[2] = 8;
+        return 1;
+    }
+    if (board[0] == board[4] && board[4] == board[8]) // rht dig
+    {
+        win_pos[0] = 0;
+        win_pos[1] = 4;
+        win_pos[2] = 8;
+        return 1;
+    }
+    if (board[2] == board[4] && board[4] == board[6]) // lft dig
+    {
+        win_pos[0] = 2;
+        win_pos[1] = 4;
+        win_pos[2] = 6;
+        return 1;
+    }
 
     // Draw Check
     int filled_box = 0;
