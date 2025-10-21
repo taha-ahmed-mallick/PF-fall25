@@ -29,7 +29,12 @@ int main()
         if (flag)
             printf("Invalid input by Player %d\n\tEnter again.\n", player);
         printf("Player %d [%c], enter position (1-9): ", player, mark);
-        scanf("%d", &box);
+        if (scanf("%d", &box) != 1)
+        {
+            while (getchar() != '\n');
+            flag = 1;
+            continue;
+        }
         if (box < 1 || box > 9 || board[box - 1] != box + '0')
         {
             flag = 1;
