@@ -16,5 +16,18 @@ int main()
         prev = next - prev;
     }
     printf("\nSum of fibonacci numbers divisible by 3, 5 or 7 is %d.", sum);
+    // using for-loop
+    prev = 1, next = 1, sum = 0;
+    int temp;
+    printf("\n\nFibonacci series: %d", prev);
+    for (int next = 1; next < 1000; next = temp)
+    {
+        printf(", %d", next);
+        if (next % 3 == 0 || next % 5 == 0 || next % 7 == 0)
+            sum += next;
+        temp = next + prev;
+        prev = next;
+    }
+    printf("\nSum of fibonacci numbers divisible by 3, 5 or 7 is %d.", sum);
     return 0;
 }
