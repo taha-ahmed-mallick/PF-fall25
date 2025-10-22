@@ -20,7 +20,7 @@ int main()
     prev = 1, next = 1, sum = 0;
     int temp;
     printf("\n\nFibonacci series: %d", prev);
-    for (int next = 1; next < 1000; next = temp)
+    for (next = 1; next < 1000; next = temp)
     {
         printf(", %d", next);
         if (next % 3 == 0 || next % 5 == 0 || next % 7 == 0)
