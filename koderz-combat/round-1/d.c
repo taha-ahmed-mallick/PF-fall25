@@ -1,5 +1,5 @@
 #include <stdio.h>
-// LINK: https://vjudge.net/problem/HackerRank-euler001
+// LINK: https://vjudge.net/contest/755028#problem/D
 int main()
 {
     int t, sum = 0, n3, n5, n15, s3, s5, s15;

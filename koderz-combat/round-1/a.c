@@ -1,5 +1,5 @@
 #include <stdio.h>
-// LINK: https://vjudge.net/problem/CodeForces-2009A
+// LINK: https://vjudge.net/contest/755028#problem/A
 int main()
 {
     int t;

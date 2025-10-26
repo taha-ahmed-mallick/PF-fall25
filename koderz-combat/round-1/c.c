@@ -1,5 +1,5 @@
 #include <stdio.h>
-// LINK: https://vjudge.net/problem/HackerRank-apple-and-orange
+// LINK: https://vjudge.net/contest/755028#problem/C
 int main()
 {
     int s, t, a, b, m, n;
