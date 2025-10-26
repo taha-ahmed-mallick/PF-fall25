@@ -4,7 +4,7 @@ int main()
 {
     int m, n, p;
     printf("Enter the order of matrices...\n");
-    printf("Matrix A: m x n\nMatrix A: n x p\n");
+    printf("Matrix A: m x n\nMatrix B: n x p\n");
     printf("Enter value of m: ");
     scanf("%d", &m);
     printf("Enter value of n: ");
