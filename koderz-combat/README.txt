@@ -6,6 +6,8 @@ CREDENTIALS
 ROUND 1:
 usrname: Matrix0
 password: 3mysterycoders
+LINK: https://vjudge.net/contest/755028
 ROUND 2:
 usrname: Matrix0_KF
 password: <will be revealed soon>
+LINK: https://vjudge.net/contest/759015
