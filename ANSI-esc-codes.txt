@@ -1,0 +1,73 @@
+ANSI ESCAPE CODE REFERENCE
+==========================
+
+STRUCTURE
+----------
+Format: \033[<style>;<colors>m
+
+Parts:
+- \033 : Escape character (ASCII 27)
+- [    : Begins the control sequence
+- <style> : Text style (bold, underline, etc.)
+- <color> : Text or background color code
+- m    : Marks the end of the control sequence
+
+--------------------------------------------
+STYLE CODES
+--------------------------------------------
+0  Reset / Normal
+1  Bold / Bright
+2  Dim
+3  Italic (not always supported)
+4  Underline
+5  Blink (rarely supported)
+7  Inverse (swap FG and BG)
+8  Hidden
+9  Strikethrough
+
+--------------------------------------------
+FOREGROUND (TEXT) COLORS
+--------------------------------------------
+30  Black
+31  Red
+32  Green
+33  Yellow
+34  Blue
+35  Magenta
+36  Cyan
+37  White
+90  Bright Black (Gray)
+91  Bright Red
+92  Bright Green
+93  Bright Yellow
+94  Bright Blue
+95  Bright Magenta
+96  Bright Cyan
+97  Bright White
+
+--------------------------------------------
+BACKGROUND COLORS
+--------------------------------------------
+40  Black
+41  Red
+42  Green
+43  Yellow
+44  Blue
+45  Magenta
+46  Cyan
+47  White
+100 Bright Black (Gray)
+101 Bright Red
+102 Bright Green
+103 Bright Yellow
+104 Bright Blue
+105 Bright Magenta
+106 Bright Cyan
+107 Bright White
+
+--------------------------------------------
+EXAMPLES
+--------------------------------------------
+printf("\033[1;31mHello\033[0m");          // Bold Red
+printf("\033[4;34mUnderlined Blue\033[0m"); // Underlined Blue
+printf("\033[1;33;44mYellow on Blue\033[0m"); // Bold Yellow text on Blue background
