@@ -1,5 +1,8 @@
 #include <stdio.h>
-#include <windows.h>
+
+#ifdef _WIN32
+    #include <windows.h>
+#endif
 
 char board[] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
 int win_pos[] = {9, 9, 9};
@@ -19,7 +22,9 @@ int check_win();
 
 int main()
 {
+#ifdef _WIN32
     SetConsoleOutputCP(CP_UTF8);
+#endif
     int player = 1, box, flag = 0, status = 0;
     char mark = 'X';
     while (1)
@@ -27,8 +32,8 @@ int main()
         print_board(status);
         mark = player == 1 ? 'X' : 'O';
         if (flag)
-            printf("Invalid input by Player %d\n\tEnter again.\n", player);
-        printf("Player %d [%c], enter position (1-9): ", player, mark);
+            printf("\033[1;35mInvalid input by Player %d\n\tEnter again.\033[0m\n", player);
+        printf("\033[1mPlayer %d [%c], enter position (1-9): ", player, mark);
         if (scanf("%d", &box) != 1) // char validation
         {
             while (getchar() != '\n');
@@ -47,16 +52,18 @@ int main()
             print_board(status);
             if (status == 1)
             {
-                printf("\tPlayer %d Wins!!\n", player);
+                printf("\033[1;36m\tPlayer %d Wins!!\n", player);
             }
             else if (status == -1)
             {
-                printf("\tThis is a draw...\n");
+                printf("\033[1;33m\tThis is a draw...\n");
             }
+            printf("\033[0m");
             char choice = 'y';
             do
             {
-                if (choice != 'y') printf("Enter valid input.\n");
+                if (choice != 'y')
+                    printf("Enter valid input.\n");
                 printf("\nPlay again? (y/n): ");
                 scanf(" %c", &choice);
             } while (choice != 'y' && choice != 'Y' && choice != 'n' && choice != 'N');
@@ -64,7 +71,7 @@ int main()
             if (choice == 'y' || choice == 'Y')
             {
                 for (int i = 0; i < 9; i++)
-                    board[i] = (char) i+49;
+                    board[i] = (char)i + 49;
                 for (int i = 0; i < 3; i++)
                     win_pos[i] = 9;
 
@@ -86,36 +93,26 @@ int main()
 void print_board(int status)
 {
     system("cls");
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
-    printf("\t┌────────────────┐\n");
+    printf("\t\033[1;34m┌────────────────┐\n");
     printf("\t│TIC TAC TOE GAME│\n");
-    printf("\t└────────────────┘\n");
-    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
-    printf("\tPlayer 1: X ");
-    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
-    printf("(Red)");
-    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
-    printf("\n\tPlayer 2: O");
-    SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-    printf(" (Green)\n\n");
-    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    printf("\t└────────────────┘\033[0m\n");
+    printf("\t\033[1mPlayer 1: \033[1;31mX (RED)\033[0m");
+    printf("\n\t\033[1mPlayer 2: \033[1;32mO (Green)\033[0m\n\n");
     for (int i = 0; i < 3; i++)
     {
-        printf("\n\t    ");
+        printf("\033[1m\n\t    ");
         for (int j = 0; j < 3; j++)
         {
             char mark = board[j + i * 3];
             if (mark == 'X')
-                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
+                printf("\033[31m");
             else if (mark == 'O')
-                SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+                printf("\033[32m");
             if (status)
                 for (int k = 0; k < 3; k++)
                     if (win_pos[k] == j + i * 3)
-                        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
-            printf("%c", mark);
-            SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+                        printf("\033[34m");
+            printf("%c\033[0m\033[1m", mark);
             j != 2 ? printf(" │ ") : 0;
         }
         i != 2 ? printf("\n\t   ───┼───┼───") : 0;
