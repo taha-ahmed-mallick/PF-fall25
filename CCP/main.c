@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 #ifdef _WIN32
     #include <windows.h>
 #endif
@@ -92,7 +92,11 @@ int main()
 
 void print_board(int status)
 {
+#ifdef _WIN32
     system("cls");
+#else
+    system("clear");
+#endif
     printf("\t\033[1;34m┌────────────────┐\n");
     printf("\t│TIC TAC TOE GAME│\n");
     printf("\t└────────────────┘\033[0m\n");
