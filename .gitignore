@@ -1,6 +1,8 @@
 *.exe
 *.bat
 *.pdf
+*.out
+*
 !/CCP/*.pdf
 /code-in-place/assignments/*/*.c
 !/code-in-place/assignments/*/*.pdf
