@@ -1,0 +1,14 @@
+BEGIN
+VARIABLES a, b and c
+INPUT a, b and c
+IF a>b THEN
+    IF a>c THEN
+        OUTPUT a
+    ELSE
+        OUTPUT c
+ELSE
+    IF b>c THEN
+        OUTPUT b
+    ELSE
+        OUTPUT c
+END
