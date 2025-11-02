@@ -1,5 +1,8 @@
+*
+!*.*
 *.exe
 *.bat
+*.sh
 *.pdf
 *.out
 !/CCP/*.pdf
