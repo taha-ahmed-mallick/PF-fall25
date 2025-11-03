@@ -1,0 +1,27 @@
+BEGIN
+VARIABLES marks[5], avg, count_pass=0, count_fail=0, total=0
+OUTPUT "Print exams scores of 5 courses:"
+
+FOR i=1 to 5, step 1, DO
+    INPUT marks[i]
+    total = total + marks[i]
+    IF marks[i] >= 50 THEN
+        count_pass = count_pass + 1
+    ELSE
+        count_fail = count_fail + 1
+    ENDIF
+ENDFOR
+
+avg = total / 5
+
+OUTPUT "The average score is: ", avg
+OUTPUT "The total number of passed courses are: ", count_pass
+OUTPUT "The total number of failed courses are: ", count_fail
+
+IF count_fail > 0 THEN
+    OUTPUT "The student is failing in atleast one course."
+ELSE
+    OUTPUT "The student is passing all courses."
+ENDIF
+
+END

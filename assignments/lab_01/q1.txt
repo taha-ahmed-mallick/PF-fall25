@@ -6,9 +6,12 @@ IF a>b THEN
         OUTPUT a
     ELSE
         OUTPUT c
+    ENDIF
 ELSE
     IF b>c THEN
         OUTPUT b
     ELSE
         OUTPUT c
+    ENDIF
+ENDIF
 END
