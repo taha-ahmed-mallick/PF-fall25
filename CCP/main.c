@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #ifdef _WIN32
-    #include <windows.h>
+#include <windows.h>
 #endif
 
 char board[] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
@@ -33,7 +33,12 @@ int main()
         mark = player == 1 ? 'X' : 'O';
         if (flag)
             printf("\033[1;35mInvalid input by Player %d\n\tEnter again.\033[0m\n", player);
-        printf("\033[1mPlayer %d [%c], enter position (1-9): ", player, mark);
+        printf("\033[1mPlayer %d ", player);
+        if (player == 1)
+            printf("\033[31m[X]");
+        else
+            printf("\033[32m[O]");
+        printf("\033[0m\033[1m, enter position (1-9): ");
         if (scanf("%d", &box) != 1) // char validation
         {
             while (getchar() != '\n');
@@ -71,7 +76,7 @@ int main()
             if (choice == 'y' || choice == 'Y')
             {
                 for (int i = 0; i < 9; i++)
-                    board[i] = '1'+i;
+                    board[i] = '1' + i;
                 for (int i = 0; i < 3; i++)
                     win_pos[i] = 9;
 
