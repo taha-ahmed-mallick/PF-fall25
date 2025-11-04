@@ -71,7 +71,7 @@ int main()
             if (choice == 'y' || choice == 'Y')
             {
                 for (int i = 0; i < 9; i++)
-                    board[i] = (char)i + 49;
+                    board[i] = '1'+i;
                 for (int i = 0; i < 3; i++)
                     win_pos[i] = 9;
 
