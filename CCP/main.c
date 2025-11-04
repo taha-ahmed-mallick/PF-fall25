@@ -4,21 +4,13 @@
 #include <windows.h>
 #endif
 
-// int win_pos[] = {9, 9, 9};
-// int win_lines[8][3] = {
-//     {0, 1, 2}, // 1st row
-//     {3, 4, 5}, // 2nd row
-//     {6, 7, 8}, // 3rd row
-//     {0, 3, 6}, // 1st col
-//     {1, 4, 7}, // 2nd col
-//     {2, 5, 8}, // 3rd col
-//     {0, 4, 8}, // rht dig
-//     {2, 4, 6}  // lft dig
-// };
+char board[5][5];
+int win_lines[12][5][2];
+int win_pos[5][2];
 
-void print_board(int status, int size, char board[size][size], int win_pos[size][2]);
-int check_win(int size, char board[size][size], int win_lines[2 * size + 2][size][2], int win_pos[size][2]);
-void init_board(int size, char board[size][size], int win_lines[2 * size + 2][size][2], int win_pos[size][2])
+void print_board(int status, int size);
+int check_win(int size);
+void init_board(int size)
 {
     // Initializing the board
     for (int i = 0; i < size; i++)
@@ -59,8 +51,7 @@ void init_board(int size, char board[size][size], int win_lines[2 * size + 2][si
 }
 void clear_buffer()
 {
-    while (getchar() != '\n')
-        ;
+    while (getchar() != '\n');
 }
 
 int main()
@@ -77,13 +68,10 @@ int main()
             clear_buffer();
     } while (size < 3 || size > 5);
     clear_buffer();
-    char board[size][size];
-    int win_lines[2 * size + 2][size][2];
-    int win_pos[size][2];
-    init_board(size, board, win_lines, win_pos);
+    init_board(size);
     while (1)
     {
-        print_board(status, size, board, win_pos);
+        print_board(status, size);
         mark = player == 1 ? 'X' : 'O';
         if (flag)
             printf("\033[1;35mInvalid input by Player %d\n\tEnter again.\033[0m\n", player);
@@ -108,10 +96,10 @@ int main()
             continue;
         }
         board[row][col] = mark;
-        status = check_win(size, board, win_lines, win_pos);
+        status = check_win(size);
         if (status)
         {
-            print_board(status, size, board, win_pos);
+            print_board(status, size);
             if (status == 1)
             {
                 printf("\033[1;36m\tPlayer %d Wins!!\n", player);
@@ -121,30 +109,33 @@ int main()
                 printf("\033[1;33m\tThis is a draw...\n");
             }
             printf("\033[0m");
-            return 0;
-            // char choice = 'y';
-            // do
-            // {
-            //     if (choice != 'y')
-            //         printf("Enter valid input.\n");
-            //     printf("\nPlay again? (y/n): ");
-            //     scanf(" %c", &choice);
-            // } while (choice != 'y' && choice != 'Y' && choice != 'n' && choice != 'N');
+            char choice = 'y';
+            do
+            {
+                if (choice != 'y')
+                    printf("Enter valid input.\n");
+                printf("\nPlay again? (y/n): ");
+                scanf(" %c", &choice);
+            } while (choice != 'y' && choice != 'Y' && choice != 'n' && choice != 'N');
 
-            // if (choice == 'y' || choice == 'Y')
-            // {
-            //     for (int i = 0; i < 9; i++)
-            //         // board[i] = '1' + i;
-            //         for (int i = 0; i < 3; i++)
-            //             win_pos[i] = 9;
-
-            //     player = 1;
-            //     status = 0;
-            //     flag = 0;
-            //     continue;
-            // }
-            // else
-            //     return 0;
+            if (choice == 'y' || choice == 'Y')
+            {
+                size = 0;
+                do
+                {
+                    printf("Enter the size of board (3-5): ");
+                    if (scanf("%d", &size) != 1)
+                        clear_buffer();
+                } while (size < 3 || size > 5);
+                clear_buffer();
+                init_board(size);
+                player = 1;
+                status = 0;
+                flag = 0;
+                continue;
+            }
+            else
+                return 0;
         }
         flag = 0;
         clear_buffer(); // float validation
@@ -153,7 +144,7 @@ int main()
     return 0;
 }
 
-void print_board(int status, int size, char board[size][size], int win_pos[size][2])
+void print_board(int status, int size)
 {
 #ifdef _WIN32
     system("cls");
@@ -203,7 +194,7 @@ void print_board(int status, int size, char board[size][size], int win_pos[size]
     printf("\n\n");
 }
 
-int check_win(int size, char board[size][size], int win_lines[2 * size + 2][size][2], int win_pos[size][2])
+int check_win(int size)
 {
     // Win Check
     for (int i = 0; i < 2 * size + 2; i++)
