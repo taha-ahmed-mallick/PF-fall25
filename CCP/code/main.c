@@ -5,6 +5,8 @@
 #endif
 
 char board[] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
+//               0    1    2    3    4    5    6    7    8
+//               49   50   51   52   53   54   55   56   57
 int win_pos[] = {9, 9, 9};
 int win_lines[8][3] = {
     {0, 1, 2}, // 1st row
@@ -26,7 +28,7 @@ int main()
     SetConsoleOutputCP(CP_UTF8);
 #endif
     int player = 1, box, flag = 0, status = 0;
-    char mark = 'X';
+    char mark;
     while (1)
     {
         print_board(status);
@@ -120,7 +122,7 @@ void print_board(int status)
             if (status)
                 for (int k = 0; k < 3; k++)
                     if (win_pos[k] == j + i * 3)
-                        printf("\033[34m");
+                        printf("\033[4;34m");
             printf("%c\033[0m\033[1m", mark);
             j != 2 ? printf(" │ ") : 0;
         }
