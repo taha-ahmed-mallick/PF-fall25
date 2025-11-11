@@ -6,6 +6,7 @@
 *.sh
 *.pdf
 *.out
+*.mp4
 !/CCP/*/*.pdf
 /code-in-place/assignments/*/*.c
 !/code-in-place/assignments/*/*.pdf
