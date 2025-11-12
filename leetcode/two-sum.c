@@ -3,7 +3,7 @@
  */
 
 // Problem Link: https://leetcode.com/problems/two-sum/
-
+#include <stdlib.h>
 int *twoSum(int *nums, int numsSize, int target, int *returnSize)
 {
     *returnSize = 2;
