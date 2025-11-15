@@ -5,8 +5,7 @@ int removeElement(int* nums, int numsSize, int val) {
         if (val == *(nums+i)){
             for (int j = i+1; j < numsSize; j++)
                 *(nums+j-1) = *(nums+j);
-            numsSize--;
-            i--;
+            numsSize--, i--;
         }
     return numsSize;
 }
