@@ -1,14 +1,14 @@
-// Problem Link: https://leetcode.com/problems/power-of-three/
+// Problem Link: https://leetcode.com/problems/power-of-four/
 #include <stdbool.h>
 
-bool isPowerOfThree(int n)
+bool isPowerOfFour(int n)
 {
     if (n <= 0)
         return false;
     while (n != 1)
     {
-        if (n % 3 == 0)
-            n /= 3;
+        if (n % 4 == 0)
+            n /= 4;
         else
             return false;
     }
