@@ -4,14 +4,14 @@
 bool canPlaceFlowers(int *flowerbed, int flowerbedSize, int n)
 {
     int space[] = {0, 0}, max = 0, start = 0, end = 0, before = 1, after = 1;
+    if (!*flowerbed)
+    {
+        before = 0;
+        start = 1;
+        space[0] = 0;
+    }
     for (int i = 0; i < flowerbedSize; i++)
     {
-        if (!i && !*flowerbed)
-        {
-            before = 0;
-            start = 1;
-            space[0] = 0;
-        }
         if (i == flowerbedSize - 1 && !*(flowerbed + i))
         {
             after = 0;
