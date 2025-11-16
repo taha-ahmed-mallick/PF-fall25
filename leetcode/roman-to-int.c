@@ -1,7 +1,7 @@
 // Problem Link: https://leetcode.com/problems/roman-to-integer/
 
 int romanToInt(char* s) {
-    int map[256] = {0};
+    int map[128] = {0};
     map['I'] = 1;
     map['V'] = 5;
     map['X'] = 10;
