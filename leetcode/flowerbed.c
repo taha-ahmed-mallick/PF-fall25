@@ -31,7 +31,6 @@ bool canPlaceFlowers(int *flowerbed, int flowerbedSize, int n)
             }
         if (start && end)
         {
-            printf("%d %d %d %d\n", space[0], space[1], before, after);
             if (!before && !after)
                 max += (space[1] - space[0] + 2) / 2;
             else if (!before || !after)
@@ -41,7 +40,6 @@ bool canPlaceFlowers(int *flowerbed, int flowerbedSize, int n)
             before = start = 1;
             end = 0;
             space[0] = i;
-            printf("max: %d\n", max);
         }
     }
     if (n <= max)
