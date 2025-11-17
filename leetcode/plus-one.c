@@ -17,7 +17,7 @@ int *plusOne(int *digits, int digitsSize, int *returnSize)
             break;
     if (digits[0] == 10)
     {
-        *(returnSize) += 1;
+        (*returnSize)++;
         int *result = (int *)malloc(*returnSize * sizeof(int));
         for (int i = *returnSize - 1; i != 1; i--)
             result[i] = digits[i - 1];
