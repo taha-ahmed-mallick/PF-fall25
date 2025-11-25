@@ -18,7 +18,7 @@ Frac input(int n) {
 
 Frac sum(Frac f1, Frac f2) {
     Frac frac;
-    frac.nume = f1.nume*f2.deno + f2.nume * f1.nume;
+    frac.nume = f1.nume*f2.deno + f2.nume * f1.deno;
     frac.deno = f1.deno * f2.deno;
     return frac;
 }
