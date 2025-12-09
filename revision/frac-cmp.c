@@ -41,21 +41,20 @@ int main()
     Frac f1 = input(1);
     Frac f2 = input(2);
     int cmp = compare(f1, f2);
-    if (cmp == 0)
+    switch (cmp)
     {
+    case 0:
         printf("The fractions are equal.\n");
-        printf("\033[1;34m%d / %d = %d / %d\n", f1.nume, f1.deno, f2.nume, f2.deno);
-    }
-    else if (cmp < 0)
-    {
-        printf("Fraction 1 is less than Fraction 2.\n");
-        printf("\033[1;34m%d / %d < %d / %d\n", f1.nume, f1.deno, f2.nume, f2.deno);
-    }
-    else
-    {
+        printf("%d / %d = %d / %d\n", f1.nume, f1.deno, f2.nume, f2.deno);
+        break;
+    case 1:
         printf("Fraction 1 is greater than Fraction 2.\n");
-        printf("\033[1;34m%d / %d > %d / %d\n", f1.nume, f1.deno, f2.nume, f2.deno);
+        printf("%d / %d > %d / %d\n", f1.nume, f1.deno, f2.nume, f2.deno);
+        break;
+    case -1:
+        printf("Fraction 1 is less than Fraction 2.\n");
+        printf("%d / %d < %d / %d\n", f1.nume, f1.deno, f2.nume, f2.deno);
+        break;
     }
-    printf("\033[0m");
     return 0;
 }
