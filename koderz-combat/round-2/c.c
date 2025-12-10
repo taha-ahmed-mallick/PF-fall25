@@ -9,6 +9,7 @@ int main()
     for (int i = 0; i < n; i++)
         scanf(" %d", &arr[i]);
     int temp[n];
+    d%=n;
     for (int i = 0; i < n; i++)
     {
         if (i + d >= n)
